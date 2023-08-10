@@ -1,0 +1,138 @@
+version: "3.1"
+
+intents: 
+  - greet_welcome
+  - greet
+  - greet_introduce
+  - greet_with_infor
+  - thanks
+  - goodbye
+
+
+  - ask_admission_criteria
+  - ask_admission_method
+  - ask_register_time
+  - ask_for_information_about_training_programs
+  - ask_for_admission_requirements  
+  - ask_for_training_costs
+  - ask_for_employment_opportunities
+  - ask_for_student_activities
+  - ask_for_student_services
+
+  - ask_for_list_all_courses_in_major
+  - ask_for_list_all_lecturer_in_major
+
+  - ask_list_of_scholarships
+  - ask_scholarship_details
+  - check_scholarship
+  - ask_for_scholarship_conditions
+  - ask_for_scholarship_documents
+  - ask_for_scholarship_deadline
+  - ask_for_scholarship_money
+  - ask_for_scholarship_time
+
+  - ask_for_the_specific_scholarship
+  - ask_for_the_specific_scholarship_conditions
+  - ask_for_the_specific_scholarship_money
+  - ask_for_the_specific_scholarship_number
+  
+entities: 
+  - major
+  - scholarship_name
+
+
+slots: 
+  major:
+      type: text
+      influence_conversation: false
+      mappings:
+      - type: from_entity
+        entity: major
+
+  scholarship_name: 
+    type: text
+    influence_conversation: false
+    mappings: 
+    - type: from_entity
+      entity: scholarship_name
+        
+actions: 
+  
+  - action_list_all_courses_in_major
+  - action_list_all_lecturer_in_major
+
+  - action_admission
+  - action_admission_method
+  - action_register_time
+  - action_information_about_training_programs
+  - action_admission_requirements
+  - action_training_costs
+  - action_employment_opportunities
+  - action_student_activities
+  - action_student_services
+  - action_facilities
+
+  - action_list_of_scholarships
+  - action_detail_scholarship
+  - action_scholarship_conditions
+  - action_scholarship_documents
+  - action_scholarship_deadline
+  - action_scholarship_money
+  - action_scholarship_time
+
+  - action_the_specific_scholarship
+
+responses:
+  utter_greet: 
+    - text: Xin chào bạn! Tôi là ChatBot hỗ trợ công việc giải đáp các thắc mắc về thông tin tuyển sinh, chương trình đào tạo 
+
+  utter_greet_introduce: 
+    - text: Tôi được tạo bởi Võ Tiến Đạt
+
+  utter_thanks: 
+    - text: Đây là nhiệm vụ của chúng tôi! Rất hận hạng được phục vụ bạn
+  
+  utter_goodbye: 
+    - text: Tạm biệt bạn! Rất hân hạnh có thể giúp bạn vào lần sau 
+
+  utter_welcome: 
+    - text: Xin chào! Tôi là chatbot để giải đáp các thông tin sau
+      quick_replies:
+       - title: Tuyển sinh
+         payload: /thanks
+       - title: Học bổng
+         payload: /thanks
+       - title: Chương trình đào tạo
+         payload: /thanks
+
+  utter_specific_scholarship:
+    - text: Trường có những học bổng như sau
+      quick_replies:
+        - title: học bổng nghiên cứu khoa học 
+          payload: /ask_for_the_specific_scholarship
+
+        - title: học bổng khuyên khích học tập
+          payload: /ask_for_the_specific_scholarship
+
+  utter_ask_major_name_support: 
+    - text: Vui lòng cung cấp tên ngành 
+
+  utter_admission: 
+    - text: "Gồm nhưng thông tin tuyển sinh sau"
+
+  utter_admission_method: 
+    - text: "Phương thức tuyển sinh"
+
+  utter_please_rephrase: 
+    - text: Tôi rất xin lỗi, tôi không hiểu ý bạn là gì
+
+  utter_major: 
+    - text: "Những ngành học của bạn"
+
+  utter_please_rephrase_scholarship: 
+  - text: Vui lòng cung câp thêm về tên học bổng ?  
+  
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

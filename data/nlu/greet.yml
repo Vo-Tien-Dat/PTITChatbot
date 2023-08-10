@@ -1,0 +1,39 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - xin chào
+      - chào buổi sáng
+      - chào buổi tối
+      - Bạn có thể giúp tôi được không ?
+      - Chào buổi chiều
+      - Cùng bắt đầu nào? 
+
+  - intent: greet_welcome
+    examples: |
+      - Xin chào! Tôi là ChatBot tôi có thể giúp gì đươc cho bạn
+      - Xin chào bạn nhé
+      - Xin chào cậu 
+
+  - intent: greet_introduce
+    examples: |
+      - Bạn là ai ? 
+      - Ai đã tạo ra bạn ? 
+      - Bạn đến từ đâu ? 
+        
+  - intent: thanks
+    examples: |
+       - Cảm ơn bạn đã giúp tôi
+       - Cảm ơn nhiều nhé
+       - Cảm ơn 
+       - Tôi biết ơn bạn rất nhiều 
+       - Cảm ơn nhiều 
+
+  - intent: goodbye
+    examples: |
+      - Tạm biêt bạn
+      - Hẹn bàn lần sau 
+      - Tạm biệt 
+      - Hẹn lần sau 
+      - Hẹn gặp lại
