@@ -1,0 +1,18 @@
+version: "3.1"
+stories:
+  - story: looking for cost
+    steps:
+      - intent: ask_for_major
+      - action: utter_major
+
+      - intent: ask_for_major_details
+      - action: utter_major_details
+
+      - intent: ask_for_major_content
+      - action: action_major_content
+
+      - intent: ask_for_major_skill
+      - action: action_major_skill
+
+      - intent: ask_for_major_opportunity
+      - action: action_major_opportunity

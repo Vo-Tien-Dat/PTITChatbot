@@ -1,0 +1,155 @@
+version: "3.1"
+nlu:
+- intent: greet_welcome
+  examples: |
+    - Xin chào bạn nhé
+    - Xin chào cậu
+- intent: ask_for_information_about_training_programs
+  examples: |
+    - Tôi muốn tìm hiểu về chương trình đào tạo
+    - Cho em hỏi về chương trình đào tạo
+- intent: ask_for_admission_requirements
+  examples: |
+    - Tôi muốn biết yêu cầu đầu vào của chương trình
+    - Có yêu cầu đầu vào của chương trình ?
+- intent: ask_for_student_services
+  examples: |
+    - Sinh viên được hưởng những dịch vụ gì của trường ?
+    - Các dịch vụ dành cho sinh viên?
+- intent: ask_for_facilities
+  examples: |
+    - vật chất?
+    - Cơ sở vật chất của trường ?
+- intent: ask_for_the_specific_program
+  examples: |
+    - Tìm hiểu về ngành [an toàn thông tin](program_name)
+    - Tôi muốn tìm hiểu về ngành [kế toán](program_name) ?
+    - Ngành [công nghệ thông tin](program_name) ?
+- intent: ask_register_time
+  examples: |
+    - Đăng ký xét tuyển vào khi nào?
+    - Thời gian xét tuyển?
+    - Thời gian đăng ký để xét tuyển vào trường?
+- intent: ask_for_employment_opportunities
+  examples: |
+    - Cơ hội làm việc sau khi ra trường?
+    - Cơ hội sau khi ra trường ?
+    - Cơ hội sau tốt nghiệp?
+- intent: ask_for_student_activities
+  examples: |
+    - Trường tổ chức các hoạt động gì dành cho sinh viên?
+    - Hoạt động dành cho sinh viên?
+    - Các hoạt động dành cho sinh viên ở trường ?
+- intent: ask_for_program_cost
+  examples: |
+    - Học phí của trường
+    - Số tiền học ở trường là bao nhiêu
+    - Học phí của trường là bao nhiêu ?
+    - Học phí khi học là bao nhiêu ?
+- intent: ask_for_cost_methods
+  examples: |
+    - Trường có những phương thức thanh toán học phí nào ?
+    - Cách thanh toán học phí
+    - Làm thế nào để thanh toán học phí
+    - Phương thức thanh toán học phí ?
+- intent: ask_for_scholarship_support
+  examples: |
+    - Trường có những học bổng gì ?
+    - Học bổng để hỗ trợ sinh viên của trường ?
+    - Tìm hiểu về học bổng
+    - Học bổng sinh viên ?
+- intent: thanks
+  examples: |
+    - Cảm ơn nhiều
+    - Cảm ơn
+    - Cảm ơn nhiều nhé
+    - Cảm ơn bạn đã giúp tôi
+- intent: goodbye
+  examples: |
+    - Tạm biệt
+    - Hẹn gặp lại
+    - Hẹn lần sau
+    - Tạm biêt bạn
+- intent: ask_admission_method
+  examples: |
+    - Phương thức để xét tuyển vào trường?
+    - Phương thức tuyến sinh?
+    - Phương thức xét tuyển của trường ?
+    - Trường có những phương thức tuyển sinh nào?
+- intent: ask_for_training_costs
+  examples: |
+    - Khoản chi phí đào tạo cho chương trình?
+    - Chi phí đào tạo?
+    - Học phí của chương trình đào tạo?
+    - Chi phí đào tạo cho chương trình
+- intent: greet
+  examples: |
+    - chào buổi tối
+    - Chào buổi chiều
+    - xin chào
+    - chào buổi sáng
+    - Cùng bắt đầu nào?
+- intent: ask_for_list_all_lecturer_in_major
+  examples: |
+    - Những giảng viên trong ngành [công nghệ thông tin](major)?
+    - Ngành [an toàn thông tin](major) có những giảng viên nào?
+    - Ngành [quản trị kinh doanh](major) có những giảng viên nào?
+    - Những giảng viên trong ngành [an toàn thông tin](major)?
+    - Giảng viên trong ngành [an toàn thông tin](major)?
+- intent: ask_admission_criteria
+  examples: |
+    - Điều kiện gì để được xét tuyển vào trường?
+    - Cần đạt tiêu chí gì để xét tuyển vào trường?
+    - Điều kiện để xét tuyển ?
+    - Nếu tôi muốn nộp đơn xin vào trường, tôi cần phải đạt những tiêu chí gì của tường?
+    - Trường yêu cầu những điều kiện gì cho việc xét tuyển vào trường?
+- intent: ask_for_list_all_courses_in_major
+  examples: |
+    - Liệt kê những môn học của ngành [kê toán](major)?
+    - Liệt kê những môn học của ngành [qtkd](major)?
+    - Liệt kê những môn học của ngành [quản trị](major)?
+    - Liệt kê những môn học của ngành [công nghệ thông tin](major)?
+    - Liệt kê những môn học của ngành [kt](major)?
+    - Học những môn gì khi hoc ngành [an toàn thông tin](major) ?
+    - Những môn học trong ngành [an toàn thông tin](major)?
+    - Liệt kê những môn học của ngành [cntt](major)?
+    - Hoc ngành [Quản trị kinh doanh](major) cần học những môn gì ?
+    - Liệt kê những môn học của ngành [an toàn thông tin](major)?
+    - Hoc ngành [Kế toán](major) cần học những môn gì ?
+    - Liệt kê những môn học của ngành [attt](major)?
+    - Liệt kê những môn học của ngành [quản trị kinh doanh](major)?
+- synonym: an_toan_thong_tin
+  examples: |
+    - attt
+    - an toàn
+    - an toàn thông tin
+    - an toan thong tin
+    - an toan tt
+    - at thông tin
+    - an toan
+- synonym: cong_nghe_thong_tin
+  examples: |
+    - cntt
+    - công nghệ thông tin
+    - công nghệ
+    - cn
+    - công nghê
+    - công nghê thông tin
+    - cong nghe thong tin
+    - cong nghe
+- synonym: ke_toan
+  examples: |
+    - kt
+    - kế toán
+    - kế toán viên
+    - kê toán
+    - kế toan
+    - ke toan
+- synonym: quan_tri_kinh_doanh
+  examples: |
+    - quản trị kinh doanh
+    - qtkd
+    - quản trị
+    - kinh doanh
+    - quan tri
+    - quan tri kinh doanh

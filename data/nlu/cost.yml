@@ -1,0 +1,33 @@
+version: "3.1"
+
+nlu:
+  - intent: ask_for_cost
+    examples: |
+      - Chi phí học tập
+      - Tôi quan tâm đến chi phí học tập ? 
+      - Tôi muốn tìm hiểu về chi phí học tập
+      - Tìm hiểu chi phí học tập
+  - intent: ask_for_cost_program
+    examples: |
+      - Học phí của trường là bao nhiêu ?
+      - Học phí của trường 
+      - Học phí khi học là bao nhiêu ?
+      - Số tiền học phí là bao nhiêu 
+      - Số tiền học ở trường là bao nhiêu
+
+  - intent: ask_for_cost_methods
+    examples: |
+      - Phương thức thanh toán học phí ? 
+      - Trường có những phương thức thanh toán học phí nào ? 
+      - phương thức thanh toán học phí ? 
+      - Làm thế nào để thanh toán học phí 
+      - Cách thanh toán học phí
+
+  - intent: ask_for_cost_support
+    examples: |
+      - Trường có những học bổng gì ? 
+      - Học bổng của trường 
+      - Tìm hiểu về học bổng 
+      - Học bổng để hỗ trợ sinh viên của trường ?
+      - Học bổng sinh viên ?
+      - Học bổng dành cho sinh viên ?

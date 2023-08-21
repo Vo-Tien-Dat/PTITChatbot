@@ -1,0 +1,33 @@
+version: "3.1"
+stories:
+  - story: looking for cost
+    steps:
+      - intent: ask_for_cost_program
+      - action: utter_program_cost
+
+      - intent: ask_for_cost_methods
+      - action: action_cost_methods
+
+  - story: ask for cost program
+    steps:
+      - intent: ask_for_cost
+      - action: utter_cost
+
+      - intent: ask_for_cost_program
+      - action: action_cost_program
+
+  - story: ask for cost method
+    steps:
+      - intent: ask_for_cost
+      - action: utter_cost
+
+      - intent: ask_for_cost_methods
+      - action: action_cost_methods
+
+  - story: ask for cost support
+    steps:
+      - intent: ask_for_cost
+      - action: utter_cost
+
+      - intent: ask_for_cost_support
+      - action: action_cost_support

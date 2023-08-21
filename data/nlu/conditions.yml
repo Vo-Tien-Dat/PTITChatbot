@@ -1,0 +1,44 @@
+version: "3.1"
+
+nlu:
+  - intent: ask_for_conditions
+    examples: |
+      - Điều kiện để trúng tuyển
+      - Cần những điều kiện gì để trúng tuyển
+      - Tiêu chí để trúng tuyển
+      - Cần tiêu chí nào để trúng tuyển
+      - Yêu cầu đầu vào của trường
+
+  - intent: ask_for_condition_score
+    examples: |
+      - Cần đạt bao nhiêu điểm để trúng tuyển? 
+      - Trúng tuyển sinh vào trường cần bao nhiêu điểm ? 
+      - Điểm trúng tuyển sinh của trường
+      - Cần bao nhiêu điểm để trúng tuyển
+      - Điểm bao nhiêu thì đủ điểu kiện để trúng tuyển sinh ?
+      - Số điểm cần trúng tuyển
+
+  - intent: ask_for_condition_degree
+    examples: |
+      - Cần bằng cấp gì để đủ trúng tuyển
+      - Yêu cầu bằng cấp của trường
+      - Trường yêu cầu bằng cấp gì
+      - Để trúng tuyển cần bằng cấp gì ?
+      - Yêu cầu về bằng cấp
+      - Bằng cấp
+
+  - intent: ask_for_condition_certificates
+    examples: |
+      - Yêu cầu về chứng chỉ ngoại ngữ của trường
+      - Chứng chỉ ngoại ngữ
+      - Cần chứng chỉ ngoại ngữ nào để trúng tuyển
+      - Chứng chỉ ngoại ngữ trường yêu cầu
+      - chứng chỉ
+
+  - intent: ask_for_condition_profile
+    examples: |
+      - Học bạ như thế nào để trúng tuyển vào trường
+      - Điều kiện học bạ để trúng tuyển 
+      - Yêu cầu học bạ của trường 
+      - Yêu cầu về học bạ
+      - Học bạ

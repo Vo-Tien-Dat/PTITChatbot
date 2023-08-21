@@ -1,8 +1,12 @@
-import logging
+
 from typing import Any, Text, Dict, List, Union, Optional
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+import requests
 from underthesea import classify
+from config import CONST_DOMAIN
+
+
 def check_existing_major(major_name): 
     CONST_MAJOR = ['vi_tinh', 'kinh_doanh', 'phap_luat']
     if major_name in CONST_MAJOR:
@@ -110,4 +114,27 @@ class ActionListAllLecturerInMajor(Action):
             message = str(e)
 
         dispatcher.utter_message(text=message)
+        return []
+    
+
+
+class ActionForMajorDetails(Action):
+    def name(self) -> Text:
+        return "action_major_details"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        major_name_values = ['an_toan_thong_tin', 'cong_nghe_thong_tin', 'quan_tri_kinh_doanh', 'ke_toan']
+        major_name = tracker.get_slot('major_name')
+        print(major_name)
+        if major_name is None: 
+            dispatcher.utter_message('Vui lòng cung cấp thêm ngành mà bạn quan tâm')
+
+        if major_name is not major_name_values: 
+            dispatcher.utter_message('Chúng tôi không có ngành này')
+    
+        
+        dispatcher.utter_message(text='test')
         return []

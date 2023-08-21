@@ -1,0 +1,38 @@
+version: "3.1"
+stories:
+  - story: ask for admission result
+    steps:
+      - intent: ask_for_admissions
+      - action: utter_admission
+
+      - intent: ask_for_admission_results
+      - action: utter_admission_results
+
+  - story: ask for admission processing
+    steps:
+      - intent: ask_for_admissions
+      - action: utter_admission
+
+      - intent: ask_for_admission_processing
+      - action: utter_admission_processing
+
+  - story: ask for admission document
+    steps:
+      - intent: ask_for_admissions
+      - action: utter_admission
+
+      - intent: ask_for_admission_document
+      - action: action_admission_document
+
+  - story: ask for admission time
+    steps:
+      - intent: ask_for_admission_time
+      - action: utter_admission_time
+
+  - story: ask for admission address
+    steps:
+      - intent: ask_for_admissions
+      - action: utter_admission
+
+      - intent: ask_for_admission_address
+      - action: utter_admission_address

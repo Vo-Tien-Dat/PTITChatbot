@@ -11,7 +11,7 @@ import requests
 # ĐỌC DỮ LIỆU TẠM THỜI BẰNG FILE JSON
 def read_json(fileName: Text): 
     data = None
-    with open(fileName, 'r') as file: 
+    with open(fileName, 'r', encoding='utf-8') as file: 
         data = json.loads(file.read())
     return data
 

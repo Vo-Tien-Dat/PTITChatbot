@@ -1,45 +1,49 @@
-version: "3.1"
-stories:
-# scholarship
-  # - story: list of scholarship
-  #   steps: 
-  #   - intent: ask_list_of_scholarships
-  #   - action: action_list_of_scholarships
+# version: "3.1"
+# stories:
+#   # scholarship
+#   # - story: list of scholarship
+#   #   steps:
+#   #   - intent: ask_list_of_scholarships
+#   #   - action: action_list_of_scholarships
 
-  - story: detail scholarship
-    steps: 
-    - intent: ask_scholarship_details
-    - action: action_detail_scholarship
+#   - story: detail scholarship
+#     steps:
+#       - intent: ask_scholarship_details
+#       - action: action_detail_scholarship
 
-  - story: ask scholarshop conditions
-    steps: 
-    - intent: ask_for_scholarship_conditions
-    - action: action_scholarship_conditions
+#   - story: ask scholarshop conditions
+#     steps:
+#       - intent: ask_for_scholarship_conditions
+#       - action: action_scholarship_conditions
 
-  - story: ask scholarship documents
-    steps: 
-    - intent: ask_for_scholarship_documents
-    - action: action_scholarship_documents
+#   - story: ask scholarship documents
+#     steps:
+#       - intent: ask_for_scholarship_documents
+#       - action: action_scholarship_documents
 
-  - story: ask for scholarship deadlines
-    steps: 
-    - intent: ask_for_scholarship_deadline
-    - action: action_scholarship_deadline
+#   - story: ask for scholarship deadlines
+#     steps:
+#       - intent: ask_for_scholarship_deadline
+#       - action: action_scholarship_deadline
 
-  - story: ask for scholarship money
-    steps: 
-    - intent: ask_for_scholarship_money
-    - action: action_scholarship_money
+#   - story: ask for scholarship money
+#     steps:
+#       - intent: ask_for_scholarship_money
+#       - action: action_scholarship_money
 
-  - story: ask for scholarship time
-    steps: 
-    - intent: ask_for_scholarship_time
-    - action: action_scholarship_time
+#   - story: ask for scholarship time
+#     steps:
+#       - intent: ask_for_scholarship_time
+#       - action: action_scholarship_time
 
+#   - story: find scholarship for user
+#     steps:
+#       - intent: ask_list_of_scholarships
+#       - action: action_list_btn_scholarship
+#       - intent: ask_for_the_specific_scholarship
+#       - action: action_the_specific_scholarship
 
-  - story: find scholarship for user
-    steps: 
-    - intent: ask_list_of_scholarships
-    - action: utter_specific_scholarship
-    - intent: ask_for_the_specific_scholarship
-    - action: action_the_specific_scholarship
+#   - story: get specific scholarship for user
+#     steps:
+#       - intent: ask_for_the_specific_scholarship
+#       - action: action_the_specific_scholarship

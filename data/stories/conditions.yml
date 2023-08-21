@@ -1,0 +1,41 @@
+version: "3.1"
+stories:
+  - story: ask for score
+    steps:
+      - intent: ask_for_conditions
+      - action: utter_conditions
+
+      - intent: ask_for_condition_score
+      - action: action_condition_score
+
+  - story: ask for degree
+    steps:
+      - intent: ask_for_conditions
+      - action: utter_conditions
+
+      - intent: ask_for_condition_certificates
+      - action: action_condition_certificates
+
+  - story: ask for profile
+    steps:
+      - intent: ask_for_conditions
+      - action: utter_conditions
+
+      - intent: ask_for_condition_profile
+      - action: action_condition_profile
+
+  - story: ask for degree
+    steps:
+      - intent: ask_for_conditions
+      - action: utter_conditions
+
+      - intent: ask_for_condition_degree
+      - action: action_condition_degree
+
+  - story: ask for certificates
+    steps:
+      - intent: ask_for_conditions
+      - action: utter_conditions
+
+      - intent: ask_for_condition_certificates
+      - action: action_condition_certificates

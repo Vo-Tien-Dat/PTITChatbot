@@ -1,0 +1,97 @@
+version: "3.1"
+nlu:
+- intent: greet_welcome
+  examples: |
+    - Xin chào! Tôi là ChatBot tôi có thể giúp gì đươc cho bạn
+- intent: ask_for_information_about_training_programs
+  examples: |
+    - Chương trình đào tạo
+- intent: ask_for_admission_requirements
+  examples: |
+    - Yêu cầu đầu vào của chương trình ?
+- intent: ask_for_student_services
+  examples: |
+    - Dịch vụ của sinh viên?
+- intent: ask_for_facilities
+  examples: |
+    - Cơ sở vật chất ?
+- intent: ask_for_the_specific_program
+  examples: |
+    - Ngành [an toàn thông tin](program_name) ?
+- intent: ask_register_time
+  examples: |
+    - Đăng ký xét tuyển vào trường vào thời gian nào?
+- intent: ask_for_employment_opportunities
+  examples: |
+    - Cơ hội làm việc sau khi tốt nghiệp?
+- intent: ask_for_student_activities
+  examples: |
+    - Hoạt động sinh viên trong trường ?
+- intent: ask_for_program_cost
+  examples: |
+    - Số tiền học là bao nhiêu
+- intent: ask_for_cost_methods
+  examples: |
+    - phương thức thanh toán học phí ?
+- intent: ask_for_scholarship_support
+  examples: |
+    - Học bổng của trường
+- intent: thanks
+  examples: |
+    - Tôi biết ơn bạn rất nhiều
+- intent: goodbye
+  examples: |
+    - Hẹn bàn lần sau
+- intent: ask_admission_method
+  examples: |
+    - Những phương thức tuyển sinh của trường?
+- intent: ask_for_training_costs
+  examples: |
+    - Chi phí cho chương trình đào tạo ?
+- intent: greet
+  examples: |
+    - Bạn có thể giúp tôi được không ?
+- intent: ask_for_list_all_lecturer_in_major
+  examples: |
+    - Giảng viên trong ngành [kế toán](major)?
+- intent: ask_admission_criteria
+  examples: |
+    - Có thể kể tên tiêu chí cần đạt để xét tuyển vào trường không?
+- intent: ask_for_list_all_courses_in_major
+  examples: |
+    - Hoc ngành [an toàn thông tin](major) cần học những môn gì ?
+- synonym: an_toan_thong_tin
+  examples: |
+    - attt
+    - an toàn
+    - an toàn thông tin
+    - an toan thong tin
+    - an toan tt
+    - at thông tin
+    - an toan
+- synonym: cong_nghe_thong_tin
+  examples: |
+    - cntt
+    - công nghệ thông tin
+    - công nghệ
+    - cn
+    - công nghê
+    - công nghê thông tin
+    - cong nghe thong tin
+    - cong nghe
+- synonym: ke_toan
+  examples: |
+    - kt
+    - kế toán
+    - kế toán viên
+    - kê toán
+    - kế toan
+    - ke toan
+- synonym: quan_tri_kinh_doanh
+  examples: |
+    - quản trị kinh doanh
+    - qtkd
+    - quản trị
+    - kinh doanh
+    - quan tri
+    - quan tri kinh doanh

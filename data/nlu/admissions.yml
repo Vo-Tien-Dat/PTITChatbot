@@ -1,0 +1,59 @@
+version: "3.1"
+
+nlu:
+  - intent: ask_for_admissions
+    examples: |
+      - Quy trình tuyển sinh
+      - Quy trình tuyển sinh của trường 
+      - Tìm hiểu về quy trình tuyển sinh ? 
+      - Trường tuyển sinh nhứ thế nào ? 
+      - Có những quy trình để tuyển sinh
+      - Cần làm gì để tuyển sinh vào trường
+      - Tuyển sinh
+
+  - intent: ask_for_admission_results
+    examples: |
+      - Trường thông báo kết quả trúng tuyển như thế nào? 
+      - Cách trường thông báo trúng tuyển 
+      - Phương thức thông báo trúng tuyển của trường ?
+      - Nhận thông báo trúng tuyển như thế nào
+      - thông báo trúng tuyển
+      - nhận kêt quả
+      - nhận kết quả trúng tuyển
+
+  - intent: ask_for_admission_processing
+    examples: |
+      - Làm thế nào để nộp hồ sơ vào trường
+      - Làm cách nào để nộp hồ sơ vào trường
+      - Cách thức nào để nộp hồ sơ vào trường ?
+      - Nộp hồ sơ của trường bằng cách nào ?
+      - Làm cách nào để nạp hồ sơ vào trường ?
+      - Cách để nạp hồ sơ
+      - Nạp hồ sơ
+
+  - intent: ask_for_admission_document
+    examples: |
+      - Cần chuẩn bị những gì khi nạp hồ sơ ? 
+      - Hồ sơ cần có những gì ? 
+      - Hồ sơ cần có những giấy gì ? 
+      - Cần những giấy gì trong hồ sơ tuyển sinh ? 
+      - Bộ hồ sơ tuyển sinh gồm những gì ?
+      - Hồ sơ
+
+  - intent: ask_for_admission_address
+    examples: |
+      - Địa chỉ nộp hồ sơ 
+      - Nạp hồ sơ ở địa chỉ nào
+      - Nơi nào để tiếp nhận hồ sơ
+      - Địa chỉ tiếp nhận hồ sơ
+      - Trường nhận hồ sơ ở đâu ?
+      - địa chỉ nộp
+
+  - intent: ask_for_admission_time
+    examples: |
+      - Hạn nộp hồ sơ là ngày mấy ?
+      - Hạn nộp hồ sơ
+      - Ngày cuối cùng nạp hồ sơ là ngày mấy ? 
+      - Ngày nộp hồ sơ
+      - Ngày cuối cùng nạp hồ sơ
+      - hạn nộp
