@@ -15,24 +15,7 @@ class ActionConditions(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        dispatcher.utter_message(text = "",buttons=[
-            {
-                'title': 'Điểm',
-                'payload': '/ask_for_condition_score'
-            },
-            {
-                'title': 'Bằng cấp', 
-                'payload': 'ask_for_condition_degree'
-            }, 
-            {
-                'title': 'Chứng chỉ',
-                'payload': '/ask_for_condition_certificates'
-            },
-            {
-                'title': 'Học bạ',
-                'payload': '/ask_for_condition_profile'
-            }
-        ])
+        
         return [FollowupAction('utter_conditions')]
 
 class ActionConditionScore(Action):

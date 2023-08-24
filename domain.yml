@@ -4,6 +4,7 @@ intents:
   - greet
   - thanks
   - goodbye
+  - get_name
 
   - ask_for_major
   - ask_for_major_details
@@ -36,6 +37,7 @@ intents:
 entities:
   - major_name
   - scholarship_name
+  - name
 
 slots:
   major_name:
@@ -51,6 +53,16 @@ slots:
     mappings:
       - type: from_entity
         entity: scholarship_name
+
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+forms:
+  name_form:
+    required_slots:
+      - name
 actions:
   - action_major
   - action_major_details
@@ -73,7 +85,15 @@ actions:
   - action_condition_certificates
   - action_condition_profile
 
+  - validate_name
+
 responses:
+  utter_ask_name:
+    - text: Vui lòng cung cấp tên bạn cho tôi
+
+  utter_acception:
+    - text: Lấy tên thành công
+
   utter_greet:
     - text: Xin chào bạn! Tôi là chatbot hỗ trợ tuyển sinh. Bạn muốn biết về gì
       quick_replies:
@@ -102,16 +122,16 @@ responses:
     - text: "Những ngành học của bạn. Bạn muốn tìm hiểu ngành nào"
       quick_replies:
         - title: An toàn thông tin
-          payload: /ask_for_major_details
+          payload: /ask_for_major_details{{"major_name":"an_toan_thong_tin"}}
 
         - title: công nghệ thông tin
-          payload: /ask_for_major_details
+          payload: /ask_for_major_details{{"major_name":"cong_nghe_thong_tin"}}
 
         - title: kế toán
-          payload: /ask_for_major_details
+          payload: /ask_for_major_details{{"major_name":"ke_toan"}}
 
         - title: quản trị kinh doanh
-          payload: /ask_for_major_details
+          payload: /ask_for_major_details{{"major_name":"quan_tri_kinh_doanh"}}
 
   utter_major_details:
     - text: Bạn có thể tìm hiểu về những vấn đề sau
@@ -141,15 +161,15 @@ responses:
     - text: Trường có những học bổng sau
       quick_replies:
         - title: khuyến khích học tập
-          payload: /ask_for_cost_support_details
+          payload: /ask_for_cost_support_details{{"scholarship_name":"khuyen_khich_hoc_tap"}}
 
         - title: nghiên cứu khoa học
-          payload: /ask_for_cost_support_details
+          payload: /ask_for_cost_support_details{{"scholarship_name":"nghien_cuu_khoa_hoc"}}
 
   utter_cost_support_details:
     - text: Bạn quan tầm gì về học bổng này
       quick_replies:
-        - title: Số tiền học bổng
+        - title: Số lượng học bổng
           payload: /ask_for_cost_support_details_number
 
         - title: Điều kiện học bổng

@@ -9,6 +9,7 @@ from config import CONST_DOMAIN
 from  utils.element import *
 
 
+
 scholarship_name_values = ['khuyen_khich_hoc_tap', 'nghien_cuu_khoa_hoc']
 
 def check_scholarship_name(scholarship_name):
@@ -41,6 +42,29 @@ class ActionCostProgram(Action):
 
         dispatcher.utter_message(text = message)
         return []
+    
+
+class ActionCostMethod(Action):
+    def name(self) -> Text:
+        return "action_cost_methods"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        domain = '{}/cost/methods'.format(CONST_DOMAIN)
+        message = ''
+        message_pattern = 'Trường có hai phương thức thanh toán: \n{}'
+        try: 
+            request = requests.get(domain)
+            if request.status_code == 200:
+                data = request.json()
+                description_list = [method_data["description"] for method_data in data["data"].values()]
+                message = message_pattern.format(('\n').join(element_enumerate(description_list, start = 1)))
+        except Exception as e: 
+            print(e)
+        dispatcher.utter_message(text = message)
+        return []
+
 
 class ActionCostSupport(Action):
     def name(self) -> Text:
@@ -50,20 +74,8 @@ class ActionCostSupport(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        text_scholarship = 'Trường có những học bổng sau'
-        btn_scholarship_attr = [
-            {
-                'title': 'khuyến khích học tập', 
-                'payload': '/ask_for_cost_support_details',
-            },
-            {
-                'title': 'nghiên cứu khoa học', 
-                'payload': '/ask_for_cost_support_details'
-            },
-        ]
-        dispatcher.utter_message(text=text_scholarship)
-        dispatcher.utter_message(buttons=btn_scholarship_attr)
         return [FollowupAction('utter_cost_support')]
+    
 class ActionCostSupportDetails(Action):
     def name(self) -> Text:
         return "action_cost_support_details"
@@ -72,11 +84,8 @@ class ActionCostSupportDetails(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         scholarship_name = tracker.get_slot("scholarship_name")
-        print(scholarship_name)
         if check_scholarship_name(scholarship_name) == False:
             return [FollowupAction('action_cost_support')]
-        
-                
         return [FollowupAction('utter_cost_support_details')]
     
 class ActionCostSupportDetailsNumber(Action):

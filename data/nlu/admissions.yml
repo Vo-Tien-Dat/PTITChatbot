@@ -48,6 +48,8 @@ nlu:
       - Địa chỉ tiếp nhận hồ sơ
       - Trường nhận hồ sơ ở đâu ?
       - địa chỉ nộp
+      - Địa điểm nộp hồ sơ
+      - Nơi nào nộp hồ sơ
 
   - intent: ask_for_admission_time
     examples: |

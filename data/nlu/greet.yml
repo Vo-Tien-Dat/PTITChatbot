@@ -25,3 +25,10 @@ nlu:
       - Tạm biệt
       - Hẹn lần sau
       - Hẹn gặp lại
+
+  - intent: get_name
+    examples: |
+      - Tôi muốn cung cấp tên
+      - Tôi cung cấp thông tin 
+      - Cung cáp thông tin
+      - Cung cấp người gửi
