@@ -3,122 +3,34 @@ from typing import Any, Text, Dict, List, Union, Optional
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
-from underthesea import classify
 from config import CONST_DOMAIN
+from rasa_sdk.events import FollowupAction
+from config import CONST_DOMAIN
+from  utils.element import *
+
+major_name_values = ['an_toan_thong_tin', 'cong_nghe_thong_tin', 'ke_toan', 'quan_tri_kinh_doanh']
 
 
-def check_existing_major(major_name): 
-    CONST_MAJOR = ['vi_tinh', 'kinh_doanh', 'phap_luat']
-    if major_name in CONST_MAJOR:
-        return True
-    return False
+def check_major_name(major_name):
+    if major_name is None:
+        return False
 
-def list_courses(json_data, major_name=None): 
-    
-    data = json_data['data'].values()
-    courses = list(filter(lambda course: course['major'] == major_name, list(data)))    
-    return courses
+    if major_name not in major_name_values: 
+        return False
 
-def message_courses(courses): 
-    if(len(courses) == 0): 
-        return "Không có môn học nào cả"
-    sub_message_course = '{}'
-    message = '\n'.join([sub_message_course.format(course['name']) for course in courses])
-    return message
+    return True
 
-def list_lecturer(json_data, major_name): 
-    data = json_data['data'].values()
-    lecturers = list(filter(lambda lecturer: major_name in lecturer['major'] , list(data))) 
-    return lecturers
-
-def educational_experience(data): 
-    educational_experience_type = {
-        'year': 'năm', 
-        'month': 'tháng'
-    }
-    message_pattern = '{} {}'
-    message = message_pattern.format(data['value'], educational_experience_type[data['type']])
-    return message
-
-def message_lecturer(lecturers): 
-    if(len(lecturers) == 0): 
-        return "Không có giáo viên nào"
-    sub_message = 'Tên giáo viên: {} \n Số năm kinh nghiêm: {}'
-    message = '\n'.join([sub_message.format(lecturer['name'],educational_experience(lecturer['educational_experience'])) for lecturer in lecturers])
-    return message
-
-# XÂY DỰNG CÁC ACTION DÀNH CHO MỘT TRONG MỘT PHƯƠNG ÁN TUYỂN SINH
-class ActionListAllCoursesInMajor(Action):
-
+class ActionMajor(Action):
     def name(self) -> Text:
-        return "action_list_all_courses_in_major"
+        return "action_major"
 
     async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        domain = CONST_DOMAIN + '/major/read/courses'
-        request = requests.get(domain)
-        
-        slot_major_value = tracker.get_slot("major")
-        classify_major_value = classify(slot_major_value)
+        return [FollowupAction('utter_major')]
 
-        try: 
-            major_name = classify_major_value[0]
-            print(major_name)
-            if check_existing_major(major_name=major_name) == False:
-                raise ValueError("Chúng tôi không có mảng này")
-            
-            if request.status_code == 200: 
-                courses = list_courses(request.json(),major_name=major_name)
-                message = message_courses(courses=courses)
-            
-            if request.status_code == 500: 
-                raise ValueError('Error Server')
-            
-        except Exception as e: 
-            message = str(e)
-
-        dispatcher.utter_message(text=message)
-        return []
-    
-# XÂY DỰNG DÀNH ĐỂ TÌM GIÁO VIÊN HỖ TRỢ GIẢNG DẠY 
-class ActionListAllLecturerInMajor(Action):
-    def name(self) -> Text:
-        return "action_list_all_lecturer_in_major"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        domain = CONST_DOMAIN + '/major/read/lecturer'
-        request = requests.get(domain)
-
-        slot_major_value = tracker.get_slot("major")
-        classify_major_value = classify(slot_major_value)
-
-        try: 
-            major_name = classify_major_value[0]
-            if check_existing_major(major_name=major_name) == False:
-                raise ValueError("Chúng tôi không có mảng này")
-            
-            if request.status_code == 200: 
-                lecturers = list_lecturer(request.json(),major_name=major_name)
-            
-                message = message_lecturer(lecturers)
-            
-            if request.status_code == 500: 
-                raise ValueError('Error Server')
-            
-        except Exception as e: 
-            message = str(e)
-
-        dispatcher.utter_message(text=message)
-        return []
-    
-
-
-class ActionForMajorDetails(Action):
+class ActionMajorDetails(Action):
     def name(self) -> Text:
         return "action_major_details"
 
@@ -126,15 +38,94 @@ class ActionForMajorDetails(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        major_name_values = ['an_toan_thong_tin', 'cong_nghe_thong_tin', 'quan_tri_kinh_doanh', 'ke_toan']
-        major_name = tracker.get_slot('major_name')
-        print(major_name)
-        if major_name is None: 
-            dispatcher.utter_message('Vui lòng cung cấp thêm ngành mà bạn quan tâm')
-
-        if major_name is not major_name_values: 
-            dispatcher.utter_message('Chúng tôi không có ngành này')
-    
         
-        dispatcher.utter_message(text='test')
+        major_name = tracker.get_slot("major_name")
+        print(major_name)
+        print(check_major_name(major_name))
+        if check_major_name(major_name) == False:
+            return [FollowupAction('action_major')]
+
+        return [FollowupAction('utter_major_details')]
+    
+
+class ActionMajorContent(Action):
+    def name(self) -> Text:
+        return "action_major_content"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        
+        major_name = tracker.get_slot("major_name")
+
+        if check_major_name(major_name) == False:
+            return [FollowupAction('action_major')]
+        
+        domain = '{}/major/content/{}'.format(CONST_DOMAIN,major_name)
+        message_pattern = 'Nội dung học tập {}'
+        message = ''
+        try: 
+            request = requests.get(domain)
+            if request.status_code == 200:
+                data = request.json()
+                message = ''.join(list(data.values()))
+        except Exception as e: 
+            print(e)
+        print(message)
+        dispatcher.utter_message(text=message)
+        return []
+    
+class ActionMajorSkill(Action):
+    def name(self) -> Text:
+        return "action_major_skill"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        
+        major_name = tracker.get_slot("major_name")
+
+        if check_major_name(major_name) == False:
+            return [FollowupAction('action_major')]
+    
+        domain = '{}/major/skills/{}'.format(CONST_DOMAIN,major_name)
+        try: 
+            request = requests.get(domain)
+            if request.status_code == 200:
+                data = request.json()
+                skills = [ name_element(ski.get('name')) for ski in list(data['data'].values())]
+                message = ' '.join(skills)
+        except Exception as e: 
+            print(e)
+        
+        dispatcher.utter_message(text = message)
+        return []
+    
+class ActionMajorOpportunity(Action):
+    def name(self) -> Text:
+        return "action_major_opportunity"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        
+        major_name = tracker.get_slot("major_name")
+
+        if check_major_name(major_name) == False:
+            return [FollowupAction('action_major')]
+    
+        domain = '{}/major/opportunities/{}'.format(CONST_DOMAIN,major_name)
+        try: 
+            request = requests.get(domain)
+            if request.status_code == 200:
+                data = request.json()
+                opptunities = [ name_and_description_element(opp.get('name'), opp.get('description')) for opp in list(data['data'].values())]
+                messages = ' '.join(opptunities)
+        except Exception as e: 
+            print(e)
+        
+        dispatcher.utter_message(text = messages)
         return []

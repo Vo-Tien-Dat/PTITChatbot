@@ -11,7 +11,7 @@ class ActionForAdmisisonDocument(Action):
     def name(self) -> Text:
         return "action_admission_document"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         

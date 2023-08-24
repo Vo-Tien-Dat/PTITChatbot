@@ -31,3 +31,31 @@ stories:
 
       - intent: ask_for_cost_support
       - action: action_cost_support
+
+  - story: ask for cost support and cost program
+    steps:
+      - intent: ask_for_cost_support
+      - action: action_cost_support
+
+      - intent: ask_for_cost_program
+      - action: action_cost_program
+
+  - story: ask for cost support details
+    steps:
+      - intent: ask_for_cost_support_details
+      - action: action_cost_support_details
+
+  - story: ask for cost support details number
+    steps:
+      - intent: ask_for_cost_support_details_number
+      - action: action_cost_support_details_number
+
+  - story: ask for cost support details conditions
+    steps:
+      - intent: ask_for_cost_support_details_condition
+      - action: action_cost_support_details_condition
+
+  - story: ask for cost support details money
+    steps:
+      - intent: ask_for_cost_support_details_money
+      - action: action_cost_support_details_money

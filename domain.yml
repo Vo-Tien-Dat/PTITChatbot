@@ -1,38 +1,9 @@
 version: "3.1"
 
 intents:
-  # - greet_welcome
-  # - greet
-  # - greet_introduce
-  # - greet_with_infor
-  # - thanks
-  # - goodbye
-
-  # - ask_admission_criteria
-  # - ask_admission_method
-  # - ask_register_time
-  # - ask_for_information_about_training_programs
-  # - ask_for_admission_requirements
-  # - ask_for_training_costs
-  # - ask_for_employment_opportunities
-  # - ask_for_student_activities
-  # - ask_for_student_services
-  # - ask_for_list_all_courses_in_major
-  # - ask_for_list_all_lecturer_in_major
-
-  # - ask_list_of_scholarships
-  # - ask_scholarship_details
-  # - check_scholarship
-  # - ask_for_scholarship_conditions
-  # - ask_for_scholarship_documents
-  # - ask_for_scholarship_deadline
-  # - ask_for_scholarship_money
-  # - ask_for_scholarship_time
-
-  # - ask_for_the_specific_scholarship
-  # - ask_for_the_specific_scholarship_conditions
-  # - ask_for_the_specific_scholarship_money
-  # - ask_for_the_specific_scholarship_number
+  - greet
+  - thanks
+  - goodbye
 
   - ask_for_major
   - ask_for_major_details
@@ -40,75 +11,49 @@ intents:
   - ask_for_major_skill
   - ask_for_major_opportunity
 
+  - ask_for_admissions
   - ask_for_admission_results
   - ask_for_admission_processing
   - ask_for_admission_document
+  - ask_for_admission_address
   - ask_for_admission_time
 
   - ask_for_cost
   - ask_for_cost_methods
   - ask_for_cost_program
   - ask_for_cost_support
+  - ask_for_cost_support_details
+  - ask_for_cost_support_details_number
+  - ask_for_cost_support_details_condition
+  - ask_for_cost_support_details_money
 
   - ask_for_conditions
   - ask_for_condition_score
   - ask_for_condition_degree
   - ask_for_condition_certificates
   - ask_for_condition_profile
-  #cost
 
 entities:
   - major_name
-  # - scholarship_name
+  - scholarship_name
 
 slots:
-  # major:
-  #   type: text
-  #   influence_conversation: false
-  #   mappings:
-  #     - type: from_entity
-  #       entity: major
-
-  # scholarship_name:
-  #   type: text
-  #   influence_conversation: false
-  #   mappings:
-  #     - type: from_entity
-  #       entity: scholarship_name
   major_name:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
         entity: major_name
+
+  scholarship_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: scholarship_name
 actions:
-  # - action_list_all_courses_in_major
-  # - action_list_all_lecturer_in_major
-
-  # - action_admission
-  # - action_admission_method
-  # - action_register_time
-  # - action_information_about_training_programs
-  # - action_admission_requirements
-  # - action_training_costs
-  # - action_employment_opportunities
-  # - action_student_activities
-  # - action_student_services
-  # - action_facilities
-
-  # - action_list_of_scholarships
-  # - action_detail_scholarship
-  # - action_scholarship_conditions
-  # - action_scholarship_documents
-  # - action_scholarship_deadline
-  # - action_scholarship_money
-  # - action_scholarship_time
-
-  # - action_the_specific_scholarship
-  # - action_list_btn_scholarship
-
-  # - action_major_details
-
+  - action_major
+  - action_major_details
   - action_major_content
   - action_major_skill
   - action_major_opportunity
@@ -116,6 +61,10 @@ actions:
   - action_cost_methods
   - action_cost_program
   - action_cost_support
+  - action_cost_support_details
+  - action_cost_support_details_number
+  - action_cost_support_details_condition
+  - action_cost_support_details_money
 
   - action_admission_document
 
@@ -126,10 +75,19 @@ actions:
 
 responses:
   utter_greet:
-    - text: Xin chào bạn! Tôi là ChatBot hỗ trợ công việc giải đáp các thắc mắc về thông tin tuyển sinh, chương trình đào tạo
+    - text: Xin chào bạn! Tôi là chatbot hỗ trợ tuyển sinh. Bạn muốn biết về gì
+      quick_replies:
+        - title: quy trình tuyển sinh
+          payload: /ask_for_admissions
 
-  utter_greet_introduce:
-    - text: Tôi được tạo bởi Võ Tiến Đạt
+        - title: ngành học
+          payload: /ask_for_major
+
+        - title: chi phí học tập
+          payload: /ask_for_cost
+
+        - title: điều kiện trúng tuyển
+          payload: /ask_for_conditions
 
   utter_thanks:
     - text: Đây là nhiệm vụ của chúng tôi! Rất hận hạng được phục vụ bạn
@@ -137,33 +95,68 @@ responses:
   utter_goodbye:
     - text: Tạm biệt bạn! Rất hân hạnh có thể giúp bạn vào lần sau
 
-  utter_welcome:
-    - text: Xin chào! Tôi là chatbot tuyển sinh PTIT. Bạn quan tâm về những vấn đề gì của trường
-      quick_replies:
-        - title: tuyển sinh
-          payload: /ask_for_admissions
-        - title: chi phí
-          payload: /ask_for_cost
-        - title: Chương trình đào tạo
-          payload: /thanks
-
-  utter_specific_scholarship:
-    - text: Trường có những học bổng như sau
-      quick_replies:
-        - title: học bổng nghiên cứu khoa học
-          payload: /ask_for_the_specific_scholarship
-
-        - title: học bổng khuyên khích học tập
-          payload: /ask_for_the_specific_scholarship
-
   utter_please_rephrase:
     - text: Tôi rất xin lỗi, tôi không hiểu ý bạn là gì
 
   utter_major:
-    - text: "Những ngành học của bạn"
+    - text: "Những ngành học của bạn. Bạn muốn tìm hiểu ngành nào"
+      quick_replies:
+        - title: An toàn thông tin
+          payload: /ask_for_major_details
 
-  utter_please_rephrase_scholarship:
-    - text: Vui lòng cung câp thêm về tên học bổng ?
+        - title: công nghệ thông tin
+          payload: /ask_for_major_details
+
+        - title: kế toán
+          payload: /ask_for_major_details
+
+        - title: quản trị kinh doanh
+          payload: /ask_for_major_details
+
+  utter_major_details:
+    - text: Bạn có thể tìm hiểu về những vấn đề sau
+      quick_replies:
+        - title: nội dung học tập
+          payload: /ask_for_major_content
+
+        - title: kỹ năng
+          payload: /ask_for_major_skill
+
+        - title: cơ hội việc làm
+          payload: /ask_for_major_opportunity
+
+  utter_cost:
+    - text: Bạn quan tầm những gì đến học phí
+      quick_replies:
+        - title: chi phí đào tạo
+          payload: /ask_for_cost_program
+
+        - title: phương thức thanh toán
+          payload: /ask_for_cost_methods
+
+        - title: học bổng hỗ trợ
+          payload: /ask_for_cost_support
+
+  utter_cost_support:
+    - text: Trường có những học bổng sau
+      quick_replies:
+        - title: khuyến khích học tập
+          payload: /ask_for_cost_support_details
+
+        - title: nghiên cứu khoa học
+          payload: /ask_for_cost_support_details
+
+  utter_cost_support_details:
+    - text: Bạn quan tầm gì về học bổng này
+      quick_replies:
+        - title: Số tiền học bổng
+          payload: /ask_for_cost_support_details_number
+
+        - title: Điều kiện học bổng
+          payload: /ask_for_cost_support_details_condition
+
+        - title: Số tiền học bổng
+          payload: /ask_for_cost_support_details_money
 
   utter_admission:
     - text: Bạn muốn tìm hiểu chi tiết quy trình nào sau đây
@@ -183,23 +176,6 @@ responses:
         - title: hạn nộp
           payload: /ask_for_admission_time
 
-  utter_admission_method:
-    - text: Bạn có thể tham khảo các phương thưc tuyển sinh của trường qua phương thức dưới đây
-      custom:
-        sticker: "https://portal.ptit.edu.vn/hoc-vien-cong-nghe-buu-chinh-vien-thong-thong-bao-phuong-thuc-tuyen-sinh-dai-hoc-he-chinh-quy-nam-2023-du-kien"
-
-  utter_cost:
-    - text: Bạn quan tầm những gì đến học phí
-      quick_replies:
-        - title: chi phí đào tạo
-          payload: /ask_for_cost_program
-
-        - title: phương thức thanh toán
-          payload: /ask_for_cost_methods
-
-        - title: học bổng hỗ trợ
-          payload: /ask_for_cost_support
-
   utter_program_cost:
     - text: Múc học phí của trường tùy vào từng ngành học
       custom:
@@ -217,17 +193,6 @@ responses:
   utter_admission_address:
     - text: Nơi tiếp nhận hồ sơ ở 97 Man thiện, Thành phố Thủ Đức, Thành phố Hồ Chí Minh
 
-  utter_major_details:
-    - text: Bạn có thể tìm hiểu về những vấn đề sau
-      quick_replies:
-        - title: nội dung học tập
-          payload: /ask_for_major_content
-
-        - title: kỹ năng
-          payload: /ask_for_major_skill
-
-        - title: cơ hội việc làm
-          payload: /ask_for_major_opportunity
   utter_conditions:
     - text: Bạn đang quan tâm đến tiêu chí nào
       quick_replies:
@@ -241,7 +206,6 @@ responses:
           payload: /ask_for_condition_certificates
         - title: Học bạ
           payload: /ask_for_condition_profile
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

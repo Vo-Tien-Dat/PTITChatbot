@@ -16,6 +16,15 @@ stories:
       - intent: ask_for_admission_processing
       - action: utter_admission_processing
 
+      - intent: ask_for_admission_document
+      - action: action_admission_document
+
+      - intent: ask_for_admission_time
+      - action: utter_admission_time
+
+      - intent: ask_for_admission_address
+      - action: utter_admission_address
+
   - story: ask for admission document
     steps:
       - intent: ask_for_admissions

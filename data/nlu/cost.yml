@@ -7,6 +7,8 @@ nlu:
       - Tôi quan tâm đến chi phí học tập ? 
       - Tôi muốn tìm hiểu về chi phí học tập
       - Tìm hiểu chi phí học tập
+      - chi phí đào tạo
+
   - intent: ask_for_cost_program
     examples: |
       - Học phí của trường là bao nhiêu ?
@@ -31,3 +33,53 @@ nlu:
       - Học bổng để hỗ trợ sinh viên của trường ?
       - Học bổng sinh viên ?
       - Học bổng dành cho sinh viên ?
+      - Danh sách học bổng
+      - Học bổng
+
+  - synonym: khuyen_khich_hoc_tap
+    examples: |
+      - khuyến khích học tập
+      - khuyen khich 
+      - khuyen khich hoc tap 
+      - khuyến khích
+
+  - synonym: nghien_cuu_khoa_hoc
+    examples: |
+      - nghiên cứu khoa học 
+      - nghiên cứu 
+      - nghien cuu khoa học 
+      - nghiên cứu khoa 
+      - nghien cuu khoa
+
+  - intent: ask_for_cost_support_details
+    examples: |
+      - Tôi muốn tìm hiểu về học bổng [khuyến khích học tâp](scholarship_name)
+      - [khuyến khích học tâp](scholarship_name)
+      - [nghiên cứu khoa học](scholarship_name)
+      - Học bổng [nghiên cứu khoa học](scholarship_name)
+      - Tìm hiểu về [nghien cuu khoa](scholarship_name)
+      - Tìm hiểu về học bổng [nghien cuu khoa học](scholarship_name)
+
+  - intent: ask_for_cost_support_details_number
+    examples: |
+      - Số lượng học bổng
+      - Số sinh viên có được suất học bổng này
+      - Số suất học bổng
+      - Số lượng sinh viên được học bổng này 
+      - Có bao nhiêu sinh viên có học bổng này
+
+  - intent: ask_for_cost_support_details_condition
+    examples: |
+      - Điều kiện để có học bổng này 
+      - Làm thế nào để có học bổng này 
+      - Sinh viên cần có điều kiện gì để đạt học bổng này ? 
+      - Điều kiện cần có để có học bổng
+      - Muốn có học bổng này sinh viên cần đạt điều kiên gì
+      - Điều kiện học bổng
+
+  - intent: ask_for_cost_support_details_money
+    examples: |
+      - Giá trị học bổng này
+      - Số tiền học bổng này 
+      - Số tiền nhận được từ học bổng này
+      - Học bổng này bao nhiêu tiền
