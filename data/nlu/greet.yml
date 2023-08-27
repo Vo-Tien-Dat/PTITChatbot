@@ -28,7 +28,8 @@ nlu:
 
   - intent: get_name
     examples: |
-      - Tôi muốn cung cấp tên
-      - Tôi cung cấp thông tin 
-      - Cung cáp thông tin
-      - Cung cấp người gửi
+      - Tôi tên là [Võ Tiến Đạt](name)?
+      - Tôi tên là [Võ Thị Huyền Trinh](name)?
+      - Tên tôi là [Việt Hoàng](name)?
+      - Tên tôi là [Đức](name)?
+      - chào bạn! Tôi tên là [Đức](name)

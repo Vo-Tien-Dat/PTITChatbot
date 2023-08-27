@@ -3,20 +3,26 @@ from typing import Any, Text, Dict, List, Union, Optional
 from rasa_sdk import Action, Tracker, ValidationAction, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 
-class ValidateName(FormValidationAction):
+class ValidateName(Action):
     def name(self) -> Text:
-        return "validate_name"
+        return "action_name"
 
-    def validate_name(
+
+    def run(
         self,
-        value: Text,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any],
-    ) -> Optional[Text]:
-        print('oke')
-        if len(value) > 10:
-            dispatcher.messages(text = "Chúng tôi chỉ có tên dưới 10 ký tự")
-            return {'name': None}
-        dispatcher.utter_message(text="Vậy tên cậu là {value}")
-        return {"name": value}
+    ) -> List[Dict[Text, Any]]:
+        # Get the value of the 'name' entity
+        name_entity = next(tracker.get_latest_entity_values("name"), None)
+        name_slot = tracker.get_slot("name")
+        print(name_slot)
+        print(name_entity)
+        if name_entity:
+            # Use the entity value in your custom action logic
+            dispatcher.utter_message(f": {name_entity}")
+        else:
+            dispatcher.utter_message("Vui lòng cung cấp tên bạn cho tôi")
+
+        return []

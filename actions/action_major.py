@@ -10,7 +10,6 @@ from  utils.element import *
 
 major_name_values = ['an_toan_thong_tin', 'cong_nghe_thong_tin', 'ke_toan', 'quan_tri_kinh_doanh']
 
-
 def check_major_name(major_name):
     if major_name is None:
         return False
@@ -40,8 +39,6 @@ class ActionMajorDetails(Action):
         
         
         major_name = tracker.get_slot("major_name")
-        print(major_name)
-        print(check_major_name(major_name))
         if check_major_name(major_name) == False:
             return [FollowupAction('action_major')]
 

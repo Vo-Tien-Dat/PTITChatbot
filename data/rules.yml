@@ -15,18 +15,7 @@ rules:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: active form name
+  - rule: get name
     steps:
       - intent: get_name
-      - action: name_form
-      - active_loop: name_form
-
-  - rule: submit name
-    condition:
-      - active_loop: name_form
-    steps:
-      - action: name_form
-      - active_loop: null
-      - slot_was_set:
-          - requested_slot: null
-      - action: utter_acception
+      - action: action_name

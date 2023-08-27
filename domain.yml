@@ -57,12 +57,9 @@ slots:
   name:
     type: text
     mappings:
-      - type: from_entity
-        entity: name
-forms:
-  name_form:
-    required_slots:
-      - name
+      - type: custom
+        action: action_name
+
 actions:
   - action_major
   - action_major_details
@@ -85,11 +82,14 @@ actions:
   - action_condition_certificates
   - action_condition_profile
 
-  - validate_name
+  - action_name
 
 responses:
-  utter_ask_name:
-    - text: Vui lòng cung cấp tên bạn cho tôi
+  utter_ask_first_name:
+    - text: Họ của bạn là gì?
+
+  utter_ask_last_name:
+    - text: Tên của bạn là gì ?
 
   utter_acception:
     - text: Lấy tên thành công
