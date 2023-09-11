@@ -3,6 +3,7 @@ from typing import Any, Text, Dict, List, Union, Optional
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import FollowupAction
+from rasa_sdk.types import DomainDict
 import requests
 from underthesea import classify
 from config import CONST_DOMAIN
@@ -138,3 +139,17 @@ class ActionCostSupportDetailsMoney(Action):
 
         dispatcher.utter_message(text = message)
         return []
+
+
+# class ValidateScholarshipNameForm(FormValidationAction):
+#     def name(self) -> Text:
+#         return "validate_scholarship_name_form"
+
+#     def validate_scholarship_name(self, slot_value: Any,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: DomainDict ) -> Dict[Text, Any]: 
+
+        
+        
+#         return {"scholarship_name": None}

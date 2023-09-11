@@ -33,3 +33,17 @@ nlu:
       - Tên tôi là [Việt Hoàng](name)?
       - Tên tôi là [Đức](name)?
       - chào bạn! Tôi tên là [Đức](name)
+
+  - intent: ask_register_account
+    examples: |
+      - Tôi muốn đăng ký tài khoản
+      - Đăng ký tài khoản
+      - Làm thế nào đăng ký tài khoản
+      - Tài khoản
+
+  - intent: ask_update_account
+    examples: |
+      - Tôi muốn cập nhật lại email của tôi
+      - Làm sao để cập nhật lại email của tôi
+      - Cập nhật email
+      - Cách câp nhật lại email của tôi

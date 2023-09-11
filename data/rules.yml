@@ -19,3 +19,26 @@ rules:
     steps:
       - intent: get_name
       - action: action_name
+
+  - rule: active email form
+    steps:
+      - intent: ask_register_account
+      - action: email_form
+      - active_loop: email_form
+
+  - rule: update email form
+    steps:
+      - intent: ask_update_account
+      - action: action_reset_email
+      - action: email_form
+      - active_loop: email_form
+
+  - rule: submit form
+    condition:
+      - active_loop: email_form
+    steps:
+      - action: email_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: submit_email_form
