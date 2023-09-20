@@ -48,14 +48,20 @@ stories:
   - story: ask for cost support details number
     steps:
       - intent: ask_for_cost_support_details_number
+      - action: scholarship_name_form
+      - active_loop: scholarship_name_form
       - action: action_cost_support_details_number
 
   - story: ask for cost support details conditions
     steps:
       - intent: ask_for_cost_support_details_condition
+      - action: scholarship_name_form
+      - active_loop: scholarship_name_form
       - action: action_cost_support_details_condition
 
   - story: ask for cost support details money
     steps:
       - intent: ask_for_cost_support_details_money
+      - action: scholarship_name_form
+      - active_loop: scholarship_name_form
       - action: action_cost_support_details_money

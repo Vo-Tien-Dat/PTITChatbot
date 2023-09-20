@@ -7,6 +7,7 @@ intents:
   - get_name
   - ask_register_account
   - ask_update_account
+  - ask_stop_information
 
   - ask_for_major
   - ask_for_major_details
@@ -53,8 +54,10 @@ slots:
     type: text
     influence_conversation: false
     mappings:
-      - type: from_entity
-        entity: scholarship_name
+      - type: from_text
+        conditions:
+          - active_loop: scholarship_name_form
+            requested_slot: scholarship_name
 
   name:
     type: text
@@ -93,6 +96,7 @@ actions:
   - action_cost_support_details_number
   - action_cost_support_details_condition
   - action_cost_support_details_money
+  - validate_scholarship_name_form
 
   - action_admission_document
 
@@ -219,7 +223,7 @@ responses:
           payload: /ask_for_admission_time
 
   utter_program_cost:
-    - text: Múc học phí của trường tùy vào từng ngành học
+    - text: Mức học phí của trường tùy vào từng ngành học. Bạn tham khảo ở trang này
       custom:
         sticker: "https://portal.ptit.edu.vn/thong-bao-ve-viec-muc-thu-hoc-phi-nam-hoc-2022-2023/"
 
@@ -251,6 +255,12 @@ responses:
 
   utter_ask_email:
     - text: Bạn có thể cung cấp thêm thông tin về email này không
+
+  utter_ask_continue:
+    - text: Bạn chắc chắn chứ
+
+  utter_ask_scholarship_name:
+    - text: Học bổng mà ban quan tâm là học bổng nào
 
 session_config:
   session_expiration_time: 60

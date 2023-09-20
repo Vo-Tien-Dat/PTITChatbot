@@ -1,6 +1,6 @@
 
 from typing import Any, Text, Dict, List, Union, Optional
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import FollowupAction
 from rasa_sdk.types import DomainDict
@@ -8,7 +8,7 @@ import requests
 from underthesea import classify
 from config import CONST_DOMAIN
 from  utils.element import *
-
+from utils.SynonymMapper import * 
 
 
 scholarship_name_values = ['khuyen_khich_hoc_tap', 'nghien_cuu_khoa_hoc']
@@ -98,26 +98,20 @@ class ActionCostSupportDetailsNumber(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         scholarship_name = tracker.get_slot("scholarship_name")
-        if check_scholarship_name(scholarship_name) == False:
-            return [FollowupAction('action_cost_support_details')]
-        
         message = 'Số lượng học bổng là 15 suất học bổng'
 
         dispatcher.utter_message(text = message)
         return []
     
 class ActionCostSupportDetailsCondition(Action):
+
     def name(self) -> Text:
         return "action_cost_support_details_condition"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        scholarship_name = tracker.get_slot("scholarship_name")
-        if check_scholarship_name(scholarship_name) == False:
-            return [FollowupAction('action_cost_support_details')]
-        
+                
         message = 'Điều kiện có học bổng '
 
         dispatcher.utter_message(text = message)
@@ -131,25 +125,31 @@ class ActionCostSupportDetailsMoney(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        scholarship_name = tracker.get_slot("scholarship_name")
-        if check_scholarship_name(scholarship_name) == False:
-            return [FollowupAction('action_cost_support_details')]
         
         message = 'Số tiền của học bổng'
 
         dispatcher.utter_message(text = message)
         return []
 
+class ValidateScholarshipNameForm(FormValidationAction):
+    def name(self) -> Text:
+        self.synonyms = SynonymMapper()
+        return "validate_scholarship_name_form"
 
-# class ValidateScholarshipNameForm(FormValidationAction):
-#     def name(self) -> Text:
-#         return "validate_scholarship_name_form"
-
-#     def validate_scholarship_name(self, slot_value: Any,
-#         dispatcher: CollectingDispatcher,
-#         tracker: Tracker,
-#         domain: DomainDict ) -> Dict[Text, Any]: 
-
+    def validate_scholarship_name(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict ) -> Dict[Text, Any]: 
+        scholarship_name = None
+        try: 
+            scholarship_name = self.synonyms.mapping_text(slot_value)
+            print(scholarship_name)
+            print(check_scholarship_name(scholarship_name=scholarship_name))
+        except Exception: 
+            print('error')
+       
+        if check_scholarship_name(scholarship_name=scholarship_name) == True: 
+            
+            return {"scholarship_name": scholarship_name}
         
-        
-#         return {"scholarship_name": None}
+        message = "Chúng tôi không có loại học bổng này! Vui lòng kiểm tra lại trên học bổng"
+        dispatcher.utter_message(text = message)
+
+        return {"scholarship_name": None}

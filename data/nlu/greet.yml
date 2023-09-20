@@ -47,3 +47,11 @@ nlu:
       - Làm sao để cập nhật lại email của tôi
       - Cập nhật email
       - Cách câp nhật lại email của tôi
+
+  - intent: ask_stop_information
+    examples: |
+      - Tôi không muốn biết thông tin này nữa
+      - Tôi không quan tâm thông tin này
+      - Không quan tâm
+      - Tôi không muốn biết
+      - Có thể dừng không ?
