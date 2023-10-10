@@ -87,6 +87,7 @@ class ActionCostSupportDetails(Action):
         scholarship_name = tracker.get_slot("scholarship_name")
         if check_scholarship_name(scholarship_name) == False:
             return [FollowupAction('action_cost_support')]
+
         return [FollowupAction('utter_cost_support_details')]
     
 class ActionCostSupportDetailsNumber(Action):
@@ -111,9 +112,23 @@ class ActionCostSupportDetailsCondition(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-                
-        message = 'Điều kiện có học bổng '
+        
+        scholarship_name = tracker.get_slot("scholarship_name")
+        domain = domain = '{}/cost/scholarship/{}/{}'.format(CONST_DOMAIN, scholarship_name, 'conditions')
 
+        request = requests.get(domain)
+        message = ''
+        message_pattern = 'Để đạt được học bổng bạn cần có những điều kiện sau: \n{}'
+
+        try: 
+            if request.status_code == 200:
+                data = request.json()
+                descriptions = [ '- ' + doc.get('description') for doc in list(data['data'].values())]
+                message = message_pattern.format(('\n').join(descriptions))
+        except Exception as e: 
+            print(e)
+                
+    
         dispatcher.utter_message(text = message)
         return []
     
@@ -126,8 +141,23 @@ class ActionCostSupportDetailsMoney(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         
-        message = 'Số tiền của học bổng'
+        scholarship_name = tracker.get_slot("scholarship_name")
+        domain = domain = '{}/cost/scholarship/{}/{}'.format(CONST_DOMAIN, scholarship_name, 'money')
 
+        request = requests.get(domain)
+        message = ''
+        message_pattern = 'Số tiền của học bổng là {} {}'
+
+        try: 
+            if request.status_code == 200:
+                data = request.json()
+                money_value = data['data']['value']
+                money_type = data['data']['type']
+        
+                message = message_pattern.format(money_value, money_type)
+        
+        except Exception as e: 
+            print(e)
         dispatcher.utter_message(text = message)
         return []
 
@@ -140,8 +170,6 @@ class ValidateScholarshipNameForm(FormValidationAction):
         scholarship_name = None
         try: 
             scholarship_name = self.synonyms.mapping_text(slot_value)
-            print(scholarship_name)
-            print(check_scholarship_name(scholarship_name=scholarship_name))
         except Exception: 
             print('error')
        

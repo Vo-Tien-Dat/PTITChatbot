@@ -70,6 +70,7 @@ nlu:
 
   - intent: ask_for_cost_support_details_condition
     examples: |
+      - Điều kiện để có học bổng
       - Điều kiện để có học bổng này 
       - Làm thế nào để có học bổng này 
       - Sinh viên cần có điều kiện gì để đạt học bổng này ? 
@@ -79,6 +80,7 @@ nlu:
 
   - intent: ask_for_cost_support_details_money
     examples: |
+      - Số tiền học bổng
       - Giá trị học bổng này
       - Số tiền học bổng này 
       - Số tiền nhận được từ học bổng này
