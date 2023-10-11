@@ -85,6 +85,7 @@ class ActionCostSupportDetails(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         scholarship_name = tracker.get_slot("scholarship_name")
+        print(scholarship_name)
         if check_scholarship_name(scholarship_name) == False:
             return [FollowupAction('action_cost_support')]
 
@@ -99,7 +100,20 @@ class ActionCostSupportDetailsNumber(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         scholarship_name = tracker.get_slot("scholarship_name")
-        message = 'Số lượng học bổng là 15 suất học bổng'
+        domain = domain = '{}/cost/scholarship/{}/{}'.format(CONST_DOMAIN, scholarship_name, 'number')
+
+        request = requests.get(domain)
+        message = ''
+        message_pattern = 'Số lượng suất học bổng của trường ở ngành này là {}'
+
+        try: 
+            if request.status_code == 200:
+                data = request.json()
+                scholarship_number = data['data']
+                print(scholarship_number)
+                message = message_pattern.format(scholarship_number)
+        except Exception as e: 
+            print(e)
 
         dispatcher.utter_message(text = message)
         return []

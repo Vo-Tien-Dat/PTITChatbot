@@ -67,6 +67,7 @@ nlu:
       - Số suất học bổng
       - Số lượng sinh viên được học bổng này 
       - Có bao nhiêu sinh viên có học bổng này
+      - Số lượng sinh viên có học bổng
 
   - intent: ask_for_cost_support_details_condition
     examples: |
@@ -85,3 +86,4 @@ nlu:
       - Số tiền học bổng này 
       - Số tiền nhận được từ học bổng này
       - Học bổng này bao nhiêu tiền
+      - Được bao nhiêu tiền học bổng
