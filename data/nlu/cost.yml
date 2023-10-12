@@ -59,6 +59,8 @@ nlu:
       - Học bổng [nghiên cứu khoa học](scholarship_name)
       - Tìm hiểu về [nghien cuu khoa](scholarship_name)
       - Tìm hiểu về học bổng [nghien cuu khoa học](scholarship_name)
+      - Tìm hiểu về học bổng [thạc sĩ](scholarship_name)
+      - Học bổng [an toàn thông tin](scholarship_name)
 
   - intent: ask_for_cost_support_details_number
     examples: |

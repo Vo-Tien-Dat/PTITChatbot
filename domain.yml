@@ -261,6 +261,12 @@ responses:
 
   utter_ask_scholarship_name:
     - text: Học bổng mà ban quan tâm là học bổng nào
+      quick_replies:
+        - title: khuyến khích học tập
+          payload: /ask_for_cost_support_details{{"scholarship_name":"khuyen_khich_hoc_tap"}}
+
+        - title: nghiên cứu khoa học
+          payload: /ask_for_cost_support_details{{"scholarship_name":"nghien_cuu_khoa_hoc"}}
 
 session_config:
   session_expiration_time: 60

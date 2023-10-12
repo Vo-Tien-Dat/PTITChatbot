@@ -84,12 +84,15 @@ class ActionCostSupportDetails(Action):
     async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        scholarship_name = tracker.get_slot("scholarship_name")
+        scholarship_name = next(tracker.get_latest_entity_values("scholarship_name"), None)
         print(scholarship_name)
-        if check_scholarship_name(scholarship_name) == False:
-            return [FollowupAction('action_cost_support')]
 
-        return [FollowupAction('utter_cost_support_details')]
+        if check_scholarship_name(scholarship_name) == False:
+            return {"scholarship_name": None}
+        else:
+            {"scholarship_name":scholarship_name}
+
+        return []
     
 class ActionCostSupportDetailsNumber(Action):
     def name(self) -> Text:
@@ -181,9 +184,18 @@ class ValidateScholarshipNameForm(FormValidationAction):
         return "validate_scholarship_name_form"
 
     def validate_scholarship_name(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict ) -> Dict[Text, Any]: 
+
         scholarship_name = None
+
         try: 
+            scholarship_name_from_entity = next(tracker.get_latest_entity_values("scholarship_name"), None)
+
+            # ưu tiên bấm nút
+            if(scholarship_name_from_entity is not None): 
+                slot_value = scholarship_name_from_entity
+
             scholarship_name = self.synonyms.mapping_text(slot_value)
+
         except Exception: 
             print('error')
        
@@ -191,7 +203,7 @@ class ValidateScholarshipNameForm(FormValidationAction):
             
             return {"scholarship_name": scholarship_name}
         
-        message = "Chúng tôi không có loại học bổng này! Vui lòng kiểm tra lại trên học bổng"
+        message = "Chúng tôi không có loại học bổng này"
         dispatcher.utter_message(text = message)
 
         return {"scholarship_name": None}

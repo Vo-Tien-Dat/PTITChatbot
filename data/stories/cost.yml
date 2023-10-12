@@ -44,6 +44,9 @@ stories:
     steps:
       - intent: ask_for_cost_support_details
       - action: action_cost_support_details
+      - action: scholarship_name_form
+      - active_loop: scholarship_name_form
+      - action: utter_cost_support_details
 
   - story: ask for cost support details number
     steps:
