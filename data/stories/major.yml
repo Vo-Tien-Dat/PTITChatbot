@@ -19,13 +19,9 @@ stories:
 
   - story: search for major content
     steps:
-      - intent: ask_for_major
-      - action: action_major
-
-      - intent: ask_for_major_details
-      - action: action_major_details
-
       - intent: ask_for_major_content
+      - action: major_name_form
+      - active_loop: major_name_form
       - action: action_major_content
 
   - story: search for major skill
@@ -44,17 +40,12 @@ stories:
       - intent: ask_for_major_opportunity
       - action: action_major_opportunity
 
-  - story: only request major content
-    steps:
-      - intent: ask_for_major_content
-      - action: action_major_content
+  # - story: only request major skill
+  #   steps:
+  #     - intent: ask_for_major_skill
+  #     - action: action_major_skill
 
-  - story: only request major skill
-    steps:
-      - intent: ask_for_major_skill
-      - action: action_major_skill
-
-  - story: only request major opportunities
-    steps:
-      - intent: ask_for_major_opportunity
-      - action: action_major_opportunity
+  # - story: only request major opportunities
+  #   steps:
+  #     - intent: ask_for_major_opportunity
+  #     - action: action_major_opportunity

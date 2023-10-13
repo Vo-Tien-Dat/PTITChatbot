@@ -1,11 +1,3 @@
-# class SynonymMapper:
-#     def __init__(self) -> None:
-#         print('oke')
-
-#     def persist(self):
-#         word = ''
-#         return word
-
 import os
 import json
 import logging
@@ -24,11 +16,11 @@ class SynonymMapper():
             for file in files:
                 if file.endswith(file_extension):
                     return(os.path.join(root, file))
-                    
+                
+        return None
     def read_json_file(self,file_path): 
         with open(file_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
-            
             return data
         
         return {}
@@ -39,17 +31,20 @@ class SynonymMapper():
             directory_list = '../.rasa/cache'
             file_extension = 'synonyms.json'
             file_path = self.find_files(directory_list=directory_list, file_extension=file_extension)
+            if file_path is None: 
+                return None
             data = self.read_json_file(file_path=file_path)
         except Exception: 
             logger.debug("Don't find file synonym in storage")
         return data
 
     def mapping_text(self,word):
-        synonym = self.data[word]
-        if synonym.lower() is not None: 
-            return synonym
+        synonym = self.data.get(word)
+
+        if synonym is None:
+            return None
         
-        return synonym
+        return synonym.lower()
 
 
     

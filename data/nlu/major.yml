@@ -40,9 +40,14 @@ nlu:
 
   - intent: ask_for_major
     examples: |
+      - Danh sách ngành học của trường
+      - Danh sách ngành học
+      - Những chương trình đào tạo của trường
       - Tìm hiểu về ngành học và chương trình học ?
       - Ngành học và chương trình đào tạo
       - Ngành học
+      - Danh sách chương trình đào tạo của trường
+      - Danh sách chương trình đào tạo
       - Chương trình đào tạo
       - Chương trình đào tạo và ngành học
 
@@ -65,7 +70,8 @@ nlu:
       - Tôi muốn tìm hiểu nôi dung học tập ?
       - Nội dung học tập
       - Tìm hiểu về nội dung học tập
-      - Nôi dung dung học tập của ngành
+      - Nôi dung học tập của ngành
+      
 
   - intent: ask_for_major_skill
     examples: |

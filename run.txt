@@ -1,0 +1,6 @@
+https://eb96-113-161-48-214.ngrok-free.app/webhooks/facebook/webhook
+
+
+rasa run --endpoints .\endpoints.yml --credentials .\credentials.yml
+
+mkdir .\.rasa && rasa run --endpoints .\endpoints.yml --credentials .\credentials.yml

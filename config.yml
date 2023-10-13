@@ -3,7 +3,7 @@ recipe: "default.v1"
 language: vi
 pipeline:
   - name: WhitespaceTokenizer
-  - name: LexicalSyntacticFeaturizer
+  # - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
     analyzer: char_wb

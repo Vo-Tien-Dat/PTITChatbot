@@ -85,8 +85,7 @@ class ActionCostSupportDetails(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         scholarship_name = next(tracker.get_latest_entity_values("scholarship_name"), None)
-        print(scholarship_name)
-
+            
         if check_scholarship_name(scholarship_name) == False:
             return {"scholarship_name": None}
         else:
@@ -107,7 +106,7 @@ class ActionCostSupportDetailsNumber(Action):
 
         request = requests.get(domain)
         message = ''
-        message_pattern = 'Số lượng suất học bổng của trường ở ngành này là {}'
+        message_pattern = 'Số lượng suất học bổng này là {}'
 
         try: 
             if request.status_code == 200:
@@ -189,21 +188,21 @@ class ValidateScholarshipNameForm(FormValidationAction):
 
         try: 
             scholarship_name_from_entity = next(tracker.get_latest_entity_values("scholarship_name"), None)
-
+            print(scholarship_name_from_entity)
             # ưu tiên bấm nút
             if(scholarship_name_from_entity is not None): 
                 slot_value = scholarship_name_from_entity
-
+            
+            slot_value = slot_value.strip()
             scholarship_name = self.synonyms.mapping_text(slot_value)
+            
+            if check_scholarship_name(scholarship_name=scholarship_name) == True: 
+                return {"scholarship_name": scholarship_name}
+        
+            message = "Chúng tôi không có loại học bổng này"
+            dispatcher.utter_message(text = message)
 
         except Exception: 
-            print('error')
+            dispatcher.utter_message(text = "Lỗi phát sinh! Vui lòng thử lại sau")
        
-        if check_scholarship_name(scholarship_name=scholarship_name) == True: 
-            
-            return {"scholarship_name": scholarship_name}
-        
-        message = "Chúng tôi không có loại học bổng này"
-        dispatcher.utter_message(text = message)
-
         return {"scholarship_name": None}
